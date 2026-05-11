@@ -38,7 +38,7 @@ function getCookie(name) {
 const i18n = {
     ja: {
         profileBio:   '',
-        bio:          'ゲームと画像編集を行ったり来たりしてます。\nだいたい夜にいます。\n\n会話そんな得意じゃないけど、\n誘われたら普通に行きます。\n\n気分でロゴ作ったり画像いじったり、\n急に何か作り始めたりしてます。\n\n言い方ちょっと冷たく見えるらしいですが、\nたぶん仕様です。悪気はないです。\n\n基本なんでもやります。',
+        bio:          '皆さん初めまして、Akiです。\nAkiやAkiさんと呼んでください。\n\n趣味はゲーム、動画編集（最近してない）、WEBサイト制作など。\nやってるゲームは下に載ってるのでぜひ見てください。\n\nあまり積極的に話しかけるのは得意じゃないですが、\n親しくなった相手にはめちゃくちゃしゃべりかけるタイプなので覚悟お願いします。\n\n社会人1年目でカスタマーサポートをしています。\nお世辞にも仕事ができるとは言えません。\n\n好きな食べ物：オムライス、ナン、ピザ',
         discordTitle: 'Discord',
         statusOnline: '返信できます',
         statusIdle:   '寝てるか返信が遅いかも',
@@ -54,7 +54,7 @@ const i18n = {
     },
     en: {
         profileBio:   '',
-        bio:          'I go back and forth between gaming and image editing.\nUsually online at night.\n\nNot the best at conversation,\nbut I\'ll show up if you invite me.\n\nI randomly make logos or mess around with images —\nI just start making stuff out of nowhere.\n\nApparently my tone can come off a bit cold,\nbut that\'s probably just how I am. No ill intent.\n\nPretty much up for anything.',
+        bio:          'Hey everyone, I\'m Aki!\nFeel free to call me Aki or Aki-san.\n\nMy hobbies are gaming, video editing (haven\'t done it lately), and web development.\nCheck out the games section below for what I\'m into!\n\nI\'m not great at starting conversations,\nbut once we\'re close I\'ll talk your ear off — so brace yourself.\n\nFirst-year working adult in customer support.\nLet\'s just say I\'m not exactly excelling at my job.\n\nFavorite foods: omurice, naan, pizza',
         discordTitle: 'Discord',
         statusOnline: 'Available',
         statusIdle:   'Asleep or slow to reply',
@@ -70,7 +70,7 @@ const i18n = {
     },
     ko: {
         profileBio:   '',
-        bio:          '게임이랑 이미지 편집 사이를 왔다 갔다 하고 있어요.\n대체로 밤에 있습니다.\n\n대화가 그렇게 잘하진 못하지만,\n불러주면 보통 갑니다.\n\n기분에 따라 로고 만들거나 이미지 수정하거나,\n갑자기 뭔가 만들기 시작하기도 해요.\n\n말투가 좀 차갑게 보인다고 하는데,\n아마 사양 같아요. 악의는 없어요.\n\n기본적으로 뭐든 합니다.',
+        bio:          '안녕하세요, Aki입니다！\nAki 또는 Aki씨라고 불러주세요.\n\n취미는 게임, 영상 편집（최근에 안 함）, 웹사이트 제작 등입니다.\n하는 게임은 아래에 써놨으니 꼭 봐주세요.\n\n적극적으로 먼저 말 거는 건 잘 못하지만,\n친해지면 엄청나게 말 걸어대는 타입이니 각오해 주세요.\n\n사회인 1년차로 고객 지원 업무를 하고 있습니다.\n솔직히 일을 잘한다고는 말 못 하겠습니다.\n\n좋아하는 음식：오므라이스、난、피자',
         discordTitle: 'Discord',
         statusOnline: '답장 가능해요',
         statusIdle:   '자거나 답장이 늦을 수 있어요',
@@ -86,7 +86,7 @@ const i18n = {
     },
     zh: {
         profileBio:   '',
-        bio:          '在遊戲和圖像編輯之間來回切換。\n大概晚上會在線。\n\n不太擅長聊天，\n但被邀請的話通常會去。\n\n有時候突然想做個Logo或修修圖，\n莫名其妙就開始做些什麼了。\n\n說話方式好像有點冷淡，\n大概是設定問題。沒有惡意的。\n\n基本上什麼都願意做。',
+        bio:          '大家好，我是Aki！\n叫我Aki或Aki桑都可以。\n\n興趣是遊戲、影片剪輯（最近沒在弄）和網站製作。\n在玩的遊戲寫在下面，歡迎去看看。\n\n雖然不太擅長主動說話，\n但跟熟了之後會一直找你講話，請做好心理準備。\n\n社會人第一年，目前做客服工作。\n雖然說不上工作能力很好就是了。\n\n喜歡的食物：蛋包飯、印度烤餅、披薩',
         discordTitle: 'Discord',
         statusOnline: '可以回覆',
         statusIdle:   '可能在睡覺或回覆較慢',
