@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+    <title>Game — Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--subtext);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.4rem 0;
+            transition: color var(--ease);
+            align-self: flex-start;
+        }
+        .back-btn:hover { color: var(--text); }
+        .back-btn svg { width: 1rem; height: 1rem; flex-shrink: 0; }
+
+        .game-hero-card {
+            padding: 0;
+            overflow: hidden;
+        }
+        .game-banner-wrap {
+            width: 100%;
+            aspect-ratio: 460 / 215;
+            background: #111;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .game-banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .game-hero-body {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .game-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+        .game-short-desc {
+            font-size: 0.875rem;
+            color: var(--subtext);
+            line-height: 1.5;
+            margin-bottom: 1.25rem;
+        }
+        .game-details-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0 0 1.25rem;
+            transition: border-color var(--ease);
+        }
+        .game-details-text {
+            font-size: 0.925rem;
+            color: var(--text);
+            line-height: 1.85;
+            text-align: left;
+            opacity: 0.85;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.625rem;
+        }
+        .screenshots-grid a {
+            display: block;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: border-color var(--ease);
+        }
+        .screenshots-grid a:hover { border-color: var(--text); }
+        .screenshots-grid img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.15s;
+        }
+        .screenshots-grid a:hover img { opacity: 0.75; }
+
+        @media (max-width: 360px) {
+            .screenshots-grid { grid-template-columns: 1fr; }
+            .game-hero-card { padding: 1.5rem 1rem 1.25rem; }
+            .game-title { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <div class="top-controls">
+        <div class="lang-switcher">
+            <button class="lang-btn" data-lang="ja">JP</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ko">KR</button>
+            <button class="lang-btn" data-lang="zh">ZH</button>
+        </div>
+        <button class="theme-btn" id="themeBtn" title="Toggle theme">
+            <svg id="themeIconSun" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg id="themeIconMoon" class="theme-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button>
+    </div>
+
+    <main class="page-container">
+
+        <a class="back-btn" href="index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
+            </svg>
+            <span id="backText">戻る</span>
+        </a>
+
+        <section class="card game-hero-card">
+            <div class="game-banner-wrap" id="gameBannerWrap" hidden>
+                <img class="game-banner-img" id="gameBannerImg" src="" alt="">
+            </div>
+            <div class="game-hero-body">
+                <h1 class="game-title" id="gameTitle">——</h1>
+                <p class="game-short-desc" id="gameShortDesc">——</p>
+                <hr class="game-details-divider">
+                <p class="game-details-text" id="gameDetails">——</p>
+            </div>
+        </section>
+
+        <section class="card" id="screenshotsSection" hidden>
+            <div class="card-title-row">
+                <svg class="card-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <path d="m21 15-5-5L5 21"/>
+                </svg>
+                <span id="screenshotsTitle">スクリーンショット</span>
+            </div>
+            <div class="screenshots-grid" id="screenshotsGrid"></div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <span>made with ♥</span>
+    </footer>
+
+    <script src="games-data.js"></script>
+    <script>
+        const PAGE_I18N = {
+            ja: { back: '戻る',      screenshots: 'スクリーンショット' },
+            en: { back: 'Back',      screenshots: 'Screenshots'        },
+            ko: { back: '돌아가기', screenshots: '스크린샷'            },
+            zh: { back: '返回',      screenshots: '截圖'               },
+        };
+
+        let currentLang = 'ja';
+        let currentGame = null;
+
+        function setCookie(name, value, days = 365) {
+            const expires = new Date(Date.now() + days * 864e5).toUTCString();
+            document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires};path=/;SameSite=Lax`;
+        }
+        function getCookie(name) {
+            for (const part of document.cookie.split(';')) {
+                const [k, v] = part.trim().split('=');
+                if (k === name) return decodeURIComponent(v ?? '');
+            }
+            return null;
+        }
+        function detectLang() {
+            const nav = (navigator.language || '').toLowerCase();
+            if (nav.startsWith('ko')) return 'ko';
+            if (nav.startsWith('zh')) return 'zh';
+            if (nav.startsWith('en')) return 'en';
+            return 'ja';
+        }
+
+        function applyTheme(theme) {
+            document.body.dataset.theme = theme;
+            setCookie('theme', theme);
+            document.getElementById('themeIconSun').classList.toggle('hidden', theme !== 'dark');
+            document.getElementById('themeIconMoon').classList.toggle('hidden', theme === 'dark');
+        }
+
+        function renderGame(game, lang) {
+            document.title = `${game.name} — Profile`;
+            document.documentElement.lang = lang;
+            document.getElementById('gameTitle').textContent     = game.name;
+            document.getElementById('gameShortDesc').textContent = game.desc[lang]   ?? game.desc.ja;
+            document.getElementById('gameDetails').textContent   = game.details[lang] ?? game.details.ja;
+            document.getElementById('backText').textContent      = PAGE_I18N[lang].back;
+
+            const bannerWrap = document.getElementById('gameBannerWrap');
+            const bannerImg  = document.getElementById('gameBannerImg');
+            if (game.logo) {
+                bannerImg.src                    = game.logo;
+                bannerImg.alt                    = game.name;
+                bannerImg.style.objectFit        = game.logoFit     || 'cover';
+                bannerImg.style.objectPosition   = game.logoPosition || 'center';
+                bannerWrap.hidden                = false;
+                bannerImg.onerror                = () => { bannerWrap.hidden = true; };
+            } else {
+                bannerWrap.hidden = true;
+            }
+
+            const sec = document.getElementById('screenshotsSection');
+            if (game.screenshots && game.screenshots.length > 0) {
+                document.getElementById('screenshotsTitle').textContent = PAGE_I18N[lang].screenshots;
+                document.getElementById('screenshotsGrid').innerHTML = game.screenshots.map(src =>
+                    `<a href="${src}" target="_blank" rel="noopener noreferrer"><img src="${src}" alt="" loading="lazy"></a>`
+                ).join('');
+                sec.hidden = false;
+            } else {
+                sec.hidden = true;
+            }
+        }
+
+        function applyLang(lang) {
+            if (!PAGE_I18N[lang]) return;
+            currentLang = lang;
+            setCookie('lang', lang);
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            if (currentGame) renderGame(currentGame, lang);
+        }
+
+        function init() {
+            applyTheme(getCookie('theme') ?? 'dark');
+
+            const params = new URLSearchParams(location.search);
+            const id     = params.get('id');
+            const game   = typeof GAMES !== 'undefined' && GAMES.find(g => g.id === id);
+
+            if (!game) { location.href = 'index.html'; return; }
+            currentGame = game;
+
+            applyLang(getCookie('lang') ?? detectLang());
+
+            document.getElementById('themeBtn').addEventListener('click', () => {
+                applyTheme(document.body.dataset.theme === 'dark' ? 'light' : 'dark');
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

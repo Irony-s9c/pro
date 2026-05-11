@@ -9,57 +9,11 @@ const X_USERNAME          = 'pasihf0_';
 const STEAM_URL           = 'https://steamcommunity.com/profiles/76561199122916881/';
 const INSTAGRAM_USERNAME  = '91284018godsihg';
 
-const GAMES = [
-    {
-        name: 'Minecraft',
-        desc: {
-            ja: '整地をしすぎて建築とPVPがへたくそ',
-            en: 'Too much terraforming — terrible at building and PVP',
-            ko: '정지 작업만 너무 해서 건축이랑 PVP가 형편없음',
-            zh: '挖太多地了，建築和PVP都很差',
-        },
-    },
-    {
-        name: 'VRChat',
-        desc: {
-            ja: '入りたてで右も左もわからない迷子USER',
-            en: 'Brand new USER who has no idea what they\'re doing',
-            ko: '갓 시작한 방향치 USER',
-            zh: '剛加入的迷路USER，左右都分不清',
-        },
-    },
-    {
-        name: 'VALORANT',
-        desc: {
-            ja: 'めちゃくちゃへたくそで最高ランクはゴールド２',
-            en: 'Absolutely terrible — highest rank ever is Gold 2',
-            ko: '엄청 못해서 최고 랭크가 골드 2',
-            zh: '超級爛，最高段位是黃金2',
-        },
-    },
-    {
-        name: 'REPO',
-        desc: {
-            ja: 'すぐ死にます',
-            en: 'I die instantly',
-            ko: '바로 죽습니다',
-            zh: '馬上就死',
-        },
-    },
-    {
-        name: 'PEAK',
-        desc: {
-            ja: 'すぐ死にます。一人でできません',
-            en: 'I die instantly. Can\'t do it solo',
-            ko: '바로 죽습니다. 혼자서는 못 해요',
-            zh: '馬上就死。沒辦法單人',
-        },
-    },
-];
+// GAMES is defined in games-data.js (loaded before this script)
 
 const LANGUAGES = [
     { flag: '🇯🇵', name: { ja: '日本語', en: 'Japanese', ko: '일본어', zh: '日文' }, level: { ja: 'ネイティブ', en: 'Native',   ko: '네이티브', zh: '母語'  }, pct: 100 },
-    { flag: '🇺🇸', name: { ja: '英語',   en: 'English',  ko: '영어',   zh: '英文' }, level: { ja: '少しだけ',  en: 'A little', ko: '조금',    zh: '一點點' }, pct: 15  },
+    { flag: '🇺🇸', name: { ja: '英語',   en: 'English',  ko: '영어',   zh: '英文' }, level: { ja: '挨拶だけ',  en: 'Just greetings', ko: '인사만',    zh: '只會打招呼' }, pct: 15  },
 ];
 
 // ============================================================
@@ -84,6 +38,7 @@ function getCookie(name) {
 const i18n = {
     ja: {
         profileBio:   '',
+        bio:          'ゲームと画像編集を行ったり来たりしてます。\nだいたい夜にいます。\n\n会話そんな得意じゃないけど、\n誘われたら普通に行きます。\n\n気分でロゴ作ったり画像いじったり、\n急に何か作り始めたりしてます。\n\n言い方ちょっと冷たく見えるらしいですが、\nたぶん仕様です。悪気はないです。\n\n基本なんでもやります。',
         discordTitle: 'Discord',
         statusOnline: '返信できます',
         statusIdle:   '寝てるか返信が遅いかも',
@@ -95,9 +50,11 @@ const i18n = {
         gamesTitle:   'よくやるゲーム',
         langsTitle:   '言語',
         footerText:   'made with ♥',
+        addFriend:    'フレンド申請',
     },
     en: {
         profileBio:   '',
+        bio:          'I go back and forth between gaming and image editing.\nUsually online at night.\n\nNot the best at conversation,\nbut I\'ll show up if you invite me.\n\nI randomly make logos or mess around with images —\nI just start making stuff out of nowhere.\n\nApparently my tone can come off a bit cold,\nbut that\'s probably just how I am. No ill intent.\n\nPretty much up for anything.',
         discordTitle: 'Discord',
         statusOnline: 'Available',
         statusIdle:   'Asleep or slow to reply',
@@ -109,9 +66,11 @@ const i18n = {
         gamesTitle:   'Games I Play',
         langsTitle:   'Languages',
         footerText:   'made with ♥',
+        addFriend:    'Add Friend',
     },
     ko: {
         profileBio:   '',
+        bio:          '게임이랑 이미지 편집 사이를 왔다 갔다 하고 있어요.\n대체로 밤에 있습니다.\n\n대화가 그렇게 잘하진 못하지만,\n불러주면 보통 갑니다.\n\n기분에 따라 로고 만들거나 이미지 수정하거나,\n갑자기 뭔가 만들기 시작하기도 해요.\n\n말투가 좀 차갑게 보인다고 하는데,\n아마 사양 같아요. 악의는 없어요.\n\n기본적으로 뭐든 합니다.',
         discordTitle: 'Discord',
         statusOnline: '답장 가능해요',
         statusIdle:   '자거나 답장이 늦을 수 있어요',
@@ -123,9 +82,11 @@ const i18n = {
         gamesTitle:   '자주 하는 게임',
         langsTitle:   '언어',
         footerText:   'made with ♥',
+        addFriend:    '친구 추가',
     },
     zh: {
         profileBio:   '',
+        bio:          '在遊戲和圖像編輯之間來回切換。\n大概晚上會在線。\n\n不太擅長聊天，\n但被邀請的話通常會去。\n\n有時候突然想做個Logo或修修圖，\n莫名其妙就開始做些什麼了。\n\n說話方式好像有點冷淡，\n大概是設定問題。沒有惡意的。\n\n基本上什麼都願意做。',
         discordTitle: 'Discord',
         statusOnline: '可以回覆',
         statusIdle:   '可能在睡覺或回覆較慢',
@@ -137,6 +98,7 @@ const i18n = {
         gamesTitle:   '常玩的遊戲',
         langsTitle:   '語言',
         footerText:   'made with ♥',
+        addFriend:    '加好友',
     },
 };
 
@@ -210,14 +172,6 @@ function applyLang(lang) {
     buildLinks();
     buildLangs();
 
-    // update game desc if one is open
-    const activeTag = document.querySelector('.game-tag.active');
-    const gameDesc  = document.getElementById('gameDesc');
-    if (activeTag && gameDesc) {
-        const idx = Number(activeTag.dataset.idx);
-        gameDesc.textContent = GAMES[idx].desc[currentLang] ?? GAMES[idx].desc.ja;
-    }
-
     if (_lastDiscordData) renderActivity(_lastDiscordData);
 }
 
@@ -274,30 +228,11 @@ function buildLinks() {
 // ============================================================
 function buildGames() {
     const container = document.getElementById('gamesContainer');
-    const desc      = document.getElementById('gameDesc');
-    if (!container || !desc) return;
+    if (!container) return;
 
-    container.innerHTML = GAMES.map((g, i) =>
-        `<button class="game-tag" data-idx="${i}">${esc(g.name)}</button>`
+    container.innerHTML = GAMES.map(g =>
+        `<a class="game-tag" href="game.html?id=${esc(g.id)}">${esc(g.name)}</a>`
     ).join('');
-
-    container.addEventListener('click', e => {
-        const btn = e.target.closest('.game-tag');
-        if (!btn) return;
-
-        const idx    = Number(btn.dataset.idx);
-        const active = btn.classList.contains('active');
-
-        container.querySelectorAll('.game-tag').forEach(b => b.classList.remove('active'));
-
-        if (active) {
-            desc.hidden = true;
-        } else {
-            btn.classList.add('active');
-            desc.textContent = GAMES[idx].desc[currentLang] ?? GAMES[idx].desc.ja;
-            desc.hidden = false;
-        }
-    });
 }
 
 function buildLangs() {
@@ -461,6 +396,11 @@ function init() {
     buildLinks();
     buildGames();
     buildLangs();
+
+    const addFriendBtn = document.getElementById('addFriendBtn');
+    if (addFriendBtn && DISCORD_USER_ID) {
+        addFriendBtn.href = `https://discord.com/users/${DISCORD_USER_ID}`;
+    }
 
     fetchDiscord();
     setInterval(fetchDiscord, 30_000);

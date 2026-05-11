@@ -62,6 +62,19 @@
                     <div id="dStatusText" class="d-status-text">——</div>
                 </div>
             </div>
+            <a id="addFriendBtn" class="add-friend-btn" href="#" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <line x1="19" y1="8" x2="19" y2="14"/>
+                    <line x1="16" y1="11" x2="22" y2="11"/>
+                </svg>
+                <span data-i18n="addFriend">フレンド申請</span>
+            </a>
+        </section>
+
+        <section class="card bio-card">
+            <p class="bio-text" data-i18n="bio"></p>
         </section>
 
         <section class="card games-card">
@@ -74,7 +87,6 @@
                 <span data-i18n="gamesTitle">Games</span>
             </div>
             <div id="gamesContainer" class="games-container"></div>
-            <div id="gameDesc" class="game-desc" hidden></div>
         </section>
 
         <section class="card langs-card">
@@ -106,6 +118,7 @@
         <span data-i18n="footerText"></span>
     </footer>
 
+    <script src="games-data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
