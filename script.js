@@ -8,6 +8,7 @@ const DISCORD_USER_ID = '793052797892296734';
 const X_USERNAME          = 'pasihf0_';
 const STEAM_URL           = 'https://steamcommunity.com/profiles/76561199122916881/';
 const INSTAGRAM_USERNAME  = '91284018godsihg';
+const FIREBASE_DB_URL     = 'https://rerererere-74457-default-rtdb.firebaseio.com';
 
 // GAMES is defined in games-data.js (loaded before this script)
 
@@ -51,6 +52,9 @@ const i18n = {
         langsTitle:   '言語',
         footerText:   'made with ♥',
         addFriend:    'フレンド申請',
+        like:         'いいね',
+        liked:        'いいね済み',
+        likeCountFmt: '{n}人がいいね',
     },
     en: {
         profileBio:   '',
@@ -67,6 +71,9 @@ const i18n = {
         langsTitle:   'Languages',
         footerText:   'made with ♥',
         addFriend:    'Add Friend',
+        like:         'Like',
+        liked:        'Liked!',
+        likeCountFmt: '{n} likes',
     },
     ko: {
         profileBio:   '',
@@ -83,6 +90,9 @@ const i18n = {
         langsTitle:   '언어',
         footerText:   'made with ♥',
         addFriend:    '친구 추가',
+        like:         '좋아요',
+        liked:        '좋아요 완료!',
+        likeCountFmt: '{n}명 좋아요',
     },
     zh: {
         profileBio:   '',
@@ -99,6 +109,9 @@ const i18n = {
         langsTitle:   '語言',
         footerText:   'made with ♥',
         addFriend:    '加好友',
+        like:         '喜歡',
+        liked:        '已喜歡！',
+        likeCountFmt: '{n}人喜歡',
     },
 };
 
@@ -109,6 +122,7 @@ let currentLang      = 'ja';
 let currentStatus    = 'offline';
 let _lastDiscordData = null;
 let _spotifyTimer    = null;
+let _likeCount       = 0;
 
 const STATUS_KEY = {
     online:  'statusOnline',
@@ -171,6 +185,14 @@ function applyLang(lang) {
     refreshStatusText();
     buildLinks();
     buildLangs();
+
+    // いいね済みならテキストも更新
+    if (getCookie('profile_liked') === '1') {
+        const t = document.getElementById('likeBtnText');
+        if (t) t.textContent = i18n[lang].liked;
+    }
+
+    renderLikeCount();
 
     if (_lastDiscordData) renderActivity(_lastDiscordData);
 }
@@ -381,6 +403,70 @@ async function fetchDiscord() {
 }
 
 // ============================================================
+// Firebase like counter
+// ============================================================
+function renderLikeCount() {
+    const el = document.getElementById('likeCountText');
+    if (!el) return;
+    if (_likeCount > 0) {
+        el.textContent = i18n[currentLang].likeCountFmt.replace('{n}', _likeCount);
+        el.hidden = false;
+    } else {
+        el.hidden = true;
+    }
+}
+
+async function fetchLikeCount() {
+    try {
+        const res   = await fetch(`${FIREBASE_DB_URL}/likes.json`);
+        const count = await res.json();
+        _likeCount  = typeof count === 'number' ? count : 0;
+        renderLikeCount();
+    } catch { /* ignore */ }
+}
+
+async function incrementLikeCount() {
+    try {
+        const res     = await fetch(`${FIREBASE_DB_URL}/likes.json`);
+        const current = await res.json();
+        const next    = (typeof current === 'number' ? current : 0) + 1;
+        await fetch(`${FIREBASE_DB_URL}/likes.json`, {
+            method:  'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify(next),
+        });
+        _likeCount = next;
+        renderLikeCount();
+    } catch { /* ignore — like still recorded locally */ }
+}
+
+// ============================================================
+// Like button
+// ============================================================
+function initLike() {
+    const btn = document.getElementById('likeBtn');
+    if (!btn) return;
+
+    fetchLikeCount();
+
+    if (getCookie('profile_liked') === '1') {
+        btn.classList.add('liked');
+    }
+
+    btn.addEventListener('click', () => {
+        if (getCookie('profile_liked') === '1') return;
+
+        setCookie('profile_liked', '1', 3650);
+        btn.classList.add('liked', 'like-pop');
+        const t = document.getElementById('likeBtnText');
+        if (t) t.textContent = i18n[currentLang].liked;
+
+        btn.addEventListener('animationend', () => btn.classList.remove('like-pop'), { once: true });
+        incrementLikeCount();
+    });
+}
+
+// ============================================================
 // Init
 // ============================================================
 function init() {
@@ -396,6 +482,8 @@ function init() {
     buildLinks();
     buildGames();
     buildLangs();
+
+    initLike();
 
     const addFriendBtn = document.getElementById('addFriendBtn');
     if (addFriendBtn && DISCORD_USER_ID) {

@@ -378,6 +378,65 @@ button { user-select: none; }
 }
 
 /* ============================================================
+   Like Button
+============================================================ */
+.like-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--subtext);
+    border-radius: 999px;
+    padding: 0.35rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color var(--ease), color var(--ease), background var(--ease);
+    user-select: none;
+}
+
+.like-btn:hover:not(.liked) {
+    border-color: #e0245e;
+    color: #e0245e;
+}
+
+.like-btn.liked {
+    border-color: #e0245e;
+    color: #e0245e;
+    cursor: default;
+}
+
+.like-heart {
+    width: 0.95rem;
+    height: 0.95rem;
+    flex-shrink: 0;
+    transition: fill var(--ease), stroke var(--ease);
+}
+
+.like-btn.liked .like-heart {
+    fill: #e0245e;
+    stroke: #e0245e;
+}
+
+@keyframes like-pop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.5); }
+    70%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+.like-btn.like-pop .like-heart {
+    animation: like-pop 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.like-count-text {
+    font-size: 0.73rem;
+    color: var(--subtext);
+    margin-top: -0.15rem;
+}
+
+/* ============================================================
    Add Friend Button
 ============================================================ */
 .add-friend-btn {
