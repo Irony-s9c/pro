@@ -5,7 +5,7 @@
 // Also join https://discord.gg/lanyard so the API can read your status
 // ============================================================
 const DISCORD_USER_ID = '793052797892296734';
-const X_USERNAME          = 'pasihf0_';
+const X_USERNAME          = '9812yr10h';
 const STEAM_URL           = 'https://steamcommunity.com/profiles/76561199122916881/';
 const INSTAGRAM_USERNAME  = '91284018godsihg';
 
