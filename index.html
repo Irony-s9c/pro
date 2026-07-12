@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+    <title>♥</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+    <header class="site-header">
+        <span class="site-header__title"><span id="headerName"></span><span class="site-header__cursor" id="headerCursor">|</span></span>
+        <div class="site-header__controls">
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="ja">JP</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ko">KR</button>
+                <button class="lang-btn" data-lang="zh">ZH</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+            <button class="theme-btn" id="themeBtn" title="Toggle theme">
+                <svg id="themeIconSun" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg id="themeIconMoon" class="theme-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="page-container">
+
+        <section class="profile-hero">
+            <div class="avatar-wrap">
+                <img id="heroAvatar" class="hero-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+                <span id="heroStatusDot" class="hero-status-dot offline"></span>
+            </div>
+            <h1 id="profileName" class="profile-name">A</h1>
+            <p class="profile-tagline" data-i18n="tagline">メンヘラではないです。
+優しくしないでください。すぐ好きになります。</p>
+        </section>
+
+        <section class="card discord-card">
+            <div class="card-title-row">
+                <svg class="discord-logo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963.021-.04.001-.088-.041-.104a13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028zM8.02 15.278c-1.182 0-2.157-1.069-2.157-2.38 0-1.312.956-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.956 2.38-2.157 2.38zm7.975 0c-1.183 0-2.157-1.069-2.157-2.38 0-1.312.955-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.946 2.38-2.157 2.38z"/>
+                </svg>
+                <span>Discord</span>
+            </div>
+            <div class="discord-user-row">
+                <div class="d-avatar-wrap">
+                    <img id="dAvatar" class="d-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="">
+                    <span id="dStatusDot" class="d-status-dot offline"></span>
+                </div>
+                <div class="d-info">
+                    <div id="dUsername" class="d-username">——</div>
+                    <div id="dStatusText" class="d-status-text">——</div>
+                </div>
+            </div>
+            <div id="dActivity" class="d-activity" hidden></div>
+        </section>
+
+        <section class="card about-card">
+            <div class="card-title-row"><span data-i18n="aboutTitle">About</span></div>
+            <p class="card-text" data-i18n="aboutText">社会人1年目です。
+デリバリーサービスのクレーマー対応をしています。
+日本人ですが、日本語は得意ではありません。
+ゲーム、映画、Vibe Codingが好きです。</p>
+        </section>
+
+        <section class="card caution-card">
+            <div class="card-title-row"><span data-i18n="cautionTitle">取り扱い注意</span></div>
+            <p class="card-text" data-i18n="cautionText">最近遊ばなくなった人、話さなくなった人は、そっとフレンド整理することがあります。
+Discordがオフラインの人には、実はちょっと苦手意識があります（DM送っていいのか迷うので）。
+恋人がいる方は、先に教えてもらえると嬉しいです。ちょうどいい距離感を保てるように気をつけます。
+なぜかすぐ嫌われがちです。嫌いになる前に、ひとこと言ってもらえると助かります。</p>
+        </section>
+
+        <section class="card games-card">
+            <div class="card-title-row"><span data-i18n="gamesTitle">Games</span></div>
+            <p class="card-text" data-i18n="gamesText">ゲームは好きです。
+最近は忙しくてあまりできていません。
+基本的に下手ですが、頑張ります。</p>
+            <div class="tag-list">
+                <span class="tag-chip">VALORANT</span>
+                <span class="tag-chip">REPO</span>
+                <span class="tag-chip">PEAK</span>
+                <span class="tag-chip" data-i18n="gameChameleon">めっちゃカメレオン</span>
+                <span class="tag-chip">Minecraft</span>
+                <span class="tag-chip">Rust</span>
+                <span class="tag-chip">etc...</span>
+            </div>
+        </section>
+
+        <section class="card movies-card">
+            <div class="card-title-row"><span data-i18n="moviesTitle">Movies / Drama / Anime</span></div>
+            <p class="card-text" data-i18n="moviesText">映画を見ます。
+ジェイソン・ステイサムが出る映画はかなり見ます。
+韓国ドラマも好きです。戦闘系か恋愛系が多いです。
+アニメはそこまで見ません。見るとしても、なろう系か恋愛系が多めです。</p>
+        </section>
+
+        <section class="card work-card">
+            <div class="card-title-row"><span data-i18n="workTitle">Work</span></div>
+            <p class="card-text" data-i18n="workText">デリバリーサービスのクレーマー対応をしています。</p>
+            <div class="quote-block">
+                <p class="quote-block__line quote-block__in" data-i18n="quoteIn">「商品足りないんだけど！！」</p>
+                <p class="quote-block__line quote-block__out" data-i18n="quoteOut">→「申し訳ありません。返金させていただきます。」</p>
+            </div>
+        </section>
+
+        <section class="card pchelp-card">
+            <div class="card-title-row"><span data-i18n="pchelpTitle">PC / Help</span></div>
+            <p class="card-text" data-i18n="pchelpText">パソコンは得意です。
+何か知りたいこと、わからないことがあれば助けます。
+知り合いなら無料で遠隔整備もできます。たぶん。</p>
+        </section>
+
+        <section class="card final-card">
+            <div class="card-title-row"><span data-i18n="finalTitle">最後に</span></div>
+            <p class="card-text" data-i18n="finalText">彼女はいません。
+イケメンではありません。
+身長も高くありません。
+声も良くありません。
+それでも仲良くしてください。</p>
+        </section>
+
+        <section class="card links-card" id="linksCard" hidden>
+            <div class="card-title-row">
+                <svg class="card-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                <span data-i18n="linksTitle">リンク</span>
+            </div>
+            <div id="linksContainer" class="links-container"></div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <span>made with ♥</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
